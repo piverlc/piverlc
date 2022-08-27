@@ -26,7 +26,9 @@ const Home = ({ allPostsData }: HomeProps) => (
             </Link>
             <br />
             <small className={utilStyles.lightText}>
-              <Date dateString={date} />
+              <strong>
+                <Date dateString={date} />
+              </strong>
             </small>
           </li>
         ))}
