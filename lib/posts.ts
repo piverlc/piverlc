@@ -3,6 +3,11 @@ import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
+ 
+interface IPosts{
+  id:string,
+  date:string
+}
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
@@ -24,7 +29,7 @@ export const getSortedPostsData = () => {
     return {
       id,
       ...matterResult.data,
-    };
+    }as IPosts;
   });
   // Sort posts by date
   return allPostsData.sort(({ date: a }, { date: b }) => {
