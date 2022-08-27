@@ -1,13 +1,9 @@
 import fs from "fs";
 import path from "path";
-import matter from "gray-matter";
-import { remark } from "remark";
 import html from "remark-html";
- 
-interface IPosts{
-  id:string,
-  date:string
-}
+import { remark } from "remark";
+import matter from "gray-matter";
+import { Posts } from "../types/types";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
@@ -29,11 +25,11 @@ export const getSortedPostsData = () => {
     return {
       id,
       ...matterResult.data,
-    }as IPosts;
+    } as Posts;
   });
   // Sort posts by date
-  return allPostsData.sort(({ date: a }, { date: b }) => {
-    if (a < b) {
+  return allPostsData.sort((a, b) => {
+    if (a.date < b.date) {
       return 1;
     } else if (a > b) {
       return -1;
@@ -86,5 +82,5 @@ export const getPostData = async (id: string) => {
     id,
     contentHtml,
     ...matterResult.data,
-  };
+  } as Posts;
 };
