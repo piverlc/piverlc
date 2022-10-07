@@ -27,11 +27,12 @@ const Layout: FC<LayoutProps> = ({ children, home }) => {
         {home ? (
           <>
             <Image
+              layout="fixed"
               priority
               src="/images/profile.jpg"
               className={utilStyles.borderCircle}
-              height={144}
-              width={144}
+              height={244}
+              width={244}
               alt={name}
             />
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
