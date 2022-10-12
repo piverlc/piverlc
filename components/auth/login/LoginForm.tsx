@@ -1,12 +1,12 @@
-import { Fragment } from "react";
-import Head from "next/head";
-import Link from "next/link";
-import Sheet from "@mui/joy/Sheet";
+import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "@mui/joy/Button";
+import Sheet from "@mui/joy/Sheet";
 import TextField from "@mui/joy/TextField";
 import Typography from "@mui/joy/Typography";
+import Head from "next/head";
+import Link from "next/link";
+import { Fragment } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { UserAuth } from "../../../types/types";
 

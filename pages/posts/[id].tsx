@@ -1,11 +1,11 @@
-import { FC } from "react";
+import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
+import { FC } from "react";
 import Layout from "../../common/uiLayout";
 import DateWrapper from "../../components/date/DateWrapper";
-import { Posts } from "../../types/types";
 import { getAllPostIds, getPostData } from "../../lib";
 import utilStyles from "../../styles/utils.module.css";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { Posts } from "../../types/types";
 
 type PostProps = {
   postData: Posts;

@@ -1,12 +1,12 @@
-import { FC, Fragment } from "react";
+import { GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import { FC, Fragment } from "react";
 import Layout, { siteTitle } from "../common/uiLayout";
 import DateWrapper from "../components/date/DateWrapper";
-import { Posts } from "../types/types";
 import { getSortedPostsData } from "../lib";
 import utilStyles from "../styles/utils.module.css";
-import { GetStaticProps } from "next";
+import { Posts } from "../types/types";
 
 export const getStaticProps: GetStaticProps = async () => {
   const allPostsData = getSortedPostsData();

@@ -1,8 +1,8 @@
-import { Fragment, useEffect, useState } from "react";
+import DarkModeRoundedIcon from "@mui/icons-material/DarkModeRounded";
+import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
 import IconButton from "@mui/joy/IconButton";
 import { useColorScheme } from "@mui/joy/styles";
-import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
-import DarkModeRoundedIcon from "@mui/icons-material/DarkModeRounded";
+import { Fragment, useEffect, useState } from "react";
 
 const DarkModeToggle = () => {
   const { mode, setMode } = useColorScheme();

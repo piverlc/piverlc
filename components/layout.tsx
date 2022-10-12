@@ -1,9 +1,9 @@
-import * as React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import styles from "./layout.module.css";
+import { Fragment } from "react";
 import utilStyles from "../styles/utils.module.css";
+import styles from "./layout.module.css";
 
 const name = "John Doe";
 export const siteTitle = `${name}'s personal blog`;
@@ -23,7 +23,7 @@ const Layout = ({ children, home }: LayoutProps) => (
     </Head>
     <header className={styles.header}>
       {home ? (
-        <React.Fragment>
+        <Fragment>
           <Image
             priority
             src="/images/profile.jpg"
@@ -33,9 +33,9 @@ const Layout = ({ children, home }: LayoutProps) => (
             alt={name}
           />
           <h1 className={utilStyles.heading2Xl}>{name}</h1>
-        </React.Fragment>
+        </Fragment>
       ) : (
-        <React.Fragment>
+        <Fragment>
           <Link href="/">
             <a>
               <Image
@@ -53,7 +53,7 @@ const Layout = ({ children, home }: LayoutProps) => (
               <a className={utilStyles.colorInherit}>{name}</a>
             </Link>
           </h2>
-        </React.Fragment>
+        </Fragment>
       )}
     </header>
     <main>{children}</main>
