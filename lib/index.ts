@@ -1,8 +1,8 @@
 import fs from "fs";
-import path from "path";
-import html from "remark-html";
 import matter from "gray-matter";
+import path from "path";
 import { remark } from "remark";
+import html from "remark-html";
 import { Posts } from "../types/types";
 
 const postsDirectory = path.join(process.cwd(), "lib/posts");
