@@ -38,7 +38,7 @@ const config = {
         },
       },
     ],
-    'tailwindcss/no-custom-classname': 'on',
+    'tailwindcss/no-custom-classname': 'warn',
   },
   settings: {
     tailwindcss: {
