@@ -1,1 +1,1 @@
-# Blog WIP
+# Blog
