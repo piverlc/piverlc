@@ -5,7 +5,6 @@ import { getPostFromParam } from '~/utils/getPostFromParams';
 
 export const dynamicParams = false;
 
-
 export function generateStaticParams() {
   return allExamples.map((post) => ({
     slug: post.slugAsParams,
