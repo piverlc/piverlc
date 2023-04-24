@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "concurrently \"contentlayer dev\" \"next dev\"",
+    "build": "contentlayer build && next build",
     "start": "next start",
     "lint": "next lint",
     "preview": "next build && next start",
@@ -13,7 +13,9 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache"
   },
   "dependencies": {
-    "next": "13.3.0",
+    "contentlayer": "^0.3.1",
+    "next": "13.3.2-canary.2",
+    "next-contentlayer": "^0.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
@@ -30,10 +32,12 @@
     "autoprefixer": "10.4.14",
     "class-variance-authority": "^0.5.1",
     "clsx": "^1.2.1",
+    "concurrently": "^8.0.1",
     "eslint": "8.38.0",
-    "eslint-config-next": "13.3.0",
+    "eslint-config-next": "13.3.2-canary.2",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-tailwindcss": "^3.11.0",
+    "framer-motion": "^10.12.4",
     "next-themes": "^0.2.1",
     "postcss": "8.4.21",
     "prettier": "^2.8.7",

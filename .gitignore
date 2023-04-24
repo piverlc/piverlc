@@ -40,3 +40,6 @@ next-env.d.ts
 !.vscode/extension.json
 *.local
 .settings
+
+# contentlayer
+.contentlayer

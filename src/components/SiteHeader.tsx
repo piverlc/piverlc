@@ -1,13 +1,21 @@
 'use client';
 
-import { GitHubLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons';
+import { LayoutGroup, motion } from 'framer-motion';
 import Link from 'next/link';
-import { siteConfig } from '~/config/site';
+import { usePathname } from 'next/navigation';
+import { navItems, siteConfig } from '~/config/site';
+import { Icons } from '~/utils/Icons';
 import { cn } from '~/utils/cn';
 import ToggleTheme from './ToggleTheme';
 import { Button } from './ui/Button';
 
 const SiteHeader = () => {
+  let pathname = usePathname() || '/';
+
+  if (pathname.includes('/blog/')) {
+    pathname = '/blog';
+  }
+
   return (
     <header
       className={cn(
@@ -17,15 +25,52 @@ const SiteHeader = () => {
       )}
     >
       <div className='flex h-16 flex-row items-center justify-between p-5'>
-        <div>
+        <LayoutGroup>
           <Link href='/' className='items-center space-x-2' title='logo'>
-            <span className='text-4xl text-slate-950 transition-all dark:text-slate-50'>
+            <span className='text-5xl text-slate-950 transition-all dark:text-slate-50'>
               {'P'}
             </span>
           </Link>
-        </div>
+        </LayoutGroup>
 
-        <div>
+        <LayoutGroup>
+          <nav className='flex' id='nav'>
+            {Object.entries(navItems).map(([path, { name }]) => {
+              const isActive = path === pathname;
+              return (
+                <Link
+                  key={path}
+                  href={path}
+                  className={cn(
+                    'flex align-middle font-medium transition-all hover:text-neutral-800 dark:hover:text-neutral-200',
+                    {
+                      'text-neutral-500': !isActive,
+                      'font-semibold': isActive,
+                    }
+                  )}
+                  title={name}
+                >
+                  <span className='relative px-[10px] py-[5px]'>
+                    {name}
+                    {path === pathname ? (
+                      <motion.div
+                        className='absolute inset-0 z-[-1] rounded-md bg-neutral-100 dark:bg-neutral-800'
+                        layoutId='sidebar'
+                        transition={{
+                          type: 'spring',
+                          stiffness: 350,
+                          damping: 30,
+                        }}
+                      />
+                    ) : null}
+                  </span>
+                </Link>
+              );
+            })}
+          </nav>
+        </LayoutGroup>
+
+        <LayoutGroup>
           <nav>
             <Link
               title={`${siteConfig.links.github.title}`}
@@ -34,7 +79,7 @@ const SiteHeader = () => {
               rel='noreferrer'
             >
               <Button variant='ghost' size='sm'>
-                <GitHubLogoIcon className='h-6 w-6 fill-current transition-all hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100' />
+                <Icons.github className='h-6 w-6 fill-current transition-all hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100' />
                 <span className='sr-only'>{`${siteConfig.links.github.title}`}</span>
               </Button>
             </Link>
@@ -47,14 +92,13 @@ const SiteHeader = () => {
               className='mx-2'
             >
               <Button variant='ghost' size='sm'>
-                <TwitterLogoIcon className='h-6 w-6 fill-current transition-all hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100' />
+                <Icons.twitter className='h-6 w-6 fill-current transition-all hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100' />
                 <span className='sr-only'>{`${siteConfig.links.twitter.title}`}</span>
               </Button>
             </Link>
-
             <ToggleTheme />
           </nav>
-        </div>
+        </LayoutGroup>
       </div>
     </header>
   );

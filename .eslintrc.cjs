@@ -23,6 +23,7 @@ const config = {
     'plugin:@typescript-eslint/recommended',
   ],
   rules: {
+    '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/consistent-type-imports': [
       'warn',
       {

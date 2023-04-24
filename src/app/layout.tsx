@@ -2,12 +2,19 @@ import { ServerThemeProvider } from '@wits/next-themes';
 import { Inter as FontSans } from 'next/font/google';
 import ProviderWrapper from '~/components/ProviderWrapper';
 import SiteHeader from '~/components/SiteHeader';
+import TailwindIndicator from '~/components/TailwindIndicator';
 import { cn } from '~/utils/cn';
 import './globals.css';
 
 export const metadata = {
-  title: 'Blog WIP',
+  title: {
+    default: 'Piverlc',
+    template: '%s | Piverlc',
+  },
   description: 'Blog by piverlc',
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 const fontSans = FontSans({
@@ -31,16 +38,16 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <ServerThemeProvider attribute='class' defaultTheme='system' enableSystem>
-      <html lang='en'>
+      <html lang='en' className={cn(fontSans.variable)}>
         <body
           className={cn(
-            'min-h-screen bg-white font-sans text-slate-950 antialiased dark:bg-slate-950 dark:text-white',
-            fontSans.variable
+            'min-h-screen bg-white text-slate-950 antialiased dark:bg-slate-950 dark:text-white'
           )}
         >
           <ProviderWrapper>
             <SiteHeader />
-            <main className='container flex-1'>{children}</main>
+            <main className='flex-auto'>{children}</main>
+            <TailwindIndicator />
           </ProviderWrapper>
         </body>
       </html>
