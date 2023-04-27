@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation';
 import { navItems, siteConfig } from '~/config/site';
 import { Icons } from '~/utils/Icons';
 import { cn } from '~/utils/cn';
-import ToggleTheme from './ToggleTheme';
 import { Button } from './ui/Button';
 
 const SiteHeader = () => {
@@ -96,7 +95,6 @@ const SiteHeader = () => {
                 <span className='sr-only'>{`${siteConfig.links.twitter.title}`}</span>
               </Button>
             </Link>
-            <ToggleTheme />
           </nav>
         </LayoutGroup>
       </div>
