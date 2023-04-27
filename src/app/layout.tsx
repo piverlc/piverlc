@@ -33,7 +33,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body className='max-w-full antialiased'>
         <ProviderWrapper>
           <SiteHeader />
-          <main>{children}</main>
+          <main className='container m-auto'>{children}</main>
           <TailwindIndicator />
           <SiteFooter />
         </ProviderWrapper>
