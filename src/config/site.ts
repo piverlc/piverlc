@@ -6,6 +6,9 @@ export const siteConfig = {
 };
 
 export const navItems = {
+  '/': {
+    name: 'Home',
+  },
   '/blog': {
     name: 'Blog',
   },

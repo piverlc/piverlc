@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { navItems, siteConfig } from '~/config/site';
 import { Icons } from '~/utils/Icons';
 import { cn } from '~/utils/cn';
-import { Button } from './ui/Button';
+import Container from './container';
 
 const SiteHeader = () => {
   let pathname = usePathname() || '/';
@@ -16,24 +16,18 @@ const SiteHeader = () => {
   }
 
   return (
-    <header
-      className={cn(
-        'sticky top-0 z-[1100] col-span-full mx-auto w-full max-w-full',
-        'bg-white dark:border-b-slate-700 dark:bg-slate-950',
-        'divide-gray-50 border-b border-b-slate-200'
-      )}
-    >
-      <div className='flex h-16 flex-row items-center justify-between p-5'>
+    <header className='sticky top-0 z-40 w-full py-4'>
+      <Container>
         <LayoutGroup>
           <Link href='/' className='items-center space-x-2' title='logo'>
-            <span className='text-5xl text-slate-950 transition-all dark:text-slate-50'>
+            <span className='text-5xl text-light transition-all hover:text-gray-300'>
               {'P'}
             </span>
           </Link>
         </LayoutGroup>
 
         <LayoutGroup>
-          <nav className='flex' id='nav'>
+          <nav className='hidden sm:flex' id='nav'>
             {Object.entries(navItems).map(([path, { name }]) => {
               const isActive = path === pathname;
               return (
@@ -41,7 +35,7 @@ const SiteHeader = () => {
                   key={path}
                   href={path}
                   className={cn(
-                    'flex align-middle font-medium transition-all hover:text-neutral-800 dark:hover:text-neutral-200',
+                    'flex align-middle font-medium transition-all hover:text-gray-300',
                     {
                       'text-neutral-500': !isActive,
                       'font-semibold': isActive,
@@ -53,7 +47,7 @@ const SiteHeader = () => {
                     {name}
                     {path === pathname ? (
                       <motion.div
-                        className='absolute inset-0 z-[-1] rounded-md bg-neutral-100 dark:bg-neutral-800'
+                        className='absolute inset-0 z-[-1] rounded-md bg-neutral-800'
                         layoutId='sidebar'
                         transition={{
                           type: 'spring',
@@ -71,33 +65,18 @@ const SiteHeader = () => {
 
         <LayoutGroup>
           <nav>
-            <Link
+            <a
+              target='_blank'
+              rel='noreferrer'
               title={`${siteConfig.links.github.title}`}
               href={`${siteConfig.links.github.href}`}
-              target='_blank'
-              rel='noreferrer'
             >
-              <Button variant='ghost' size='sm'>
-                <Icons.github className='h-6 w-6 fill-current transition-all hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100' />
-                <span className='sr-only'>{`${siteConfig.links.github.title}`}</span>
-              </Button>
-            </Link>
-
-            <Link
-              title={`${siteConfig.links.twitter.title}`}
-              href={`${siteConfig.links.twitter.href}`}
-              target='_blank'
-              rel='noreferrer'
-              className='mx-2'
-            >
-              <Button variant='ghost' size='sm'>
-                <Icons.twitter className='h-6 w-6 fill-current transition-all hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100' />
-                <span className='sr-only'>{`${siteConfig.links.twitter.title}`}</span>
-              </Button>
-            </Link>
+              <Icons.github className='h-6 w-6 transition-all duration-100 hover:text-gray-300' />
+              <span className='sr-only'>{`${siteConfig.links.github.title}`}</span>
+            </a>
           </nav>
         </LayoutGroup>
-      </div>
+      </Container>
     </header>
   );
 };
