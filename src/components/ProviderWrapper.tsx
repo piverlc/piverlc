@@ -1,6 +1,5 @@
 'use client';
 
-import { ThemeProvider } from '@wits/next-themes';
 import { Fragment, type FC } from 'react';
 
 type ProviderWrapperProps = {
@@ -8,15 +7,7 @@ type ProviderWrapperProps = {
 };
 
 const ProviderWrapper: FC<ProviderWrapperProps> = ({ children }) => {
-  return (
-    <Fragment>
-      <div className='flex min-h-screen flex-col'>
-        <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
-          {children}
-        </ThemeProvider>
-      </div>
-    </Fragment>
-  );
+  return <Fragment>{children}</Fragment>;
 };
 
 export default ProviderWrapper;
