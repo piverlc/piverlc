@@ -1,31 +1,35 @@
 import { allExamples } from 'contentlayer/generated';
+import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import MDx from '~/components/MDX';
-import { getPostFromParam } from '~/utils/getPostFromParams';
+import { getPostFromParam } from '~/utils/getPostFromParam';
 
 export const dynamicParams = false;
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
   return allExamples.map((post) => ({
     slug: post.slugAsParams,
   }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata | undefined> {
   const post = getPostFromParam(params.slug);
 
   if (!post) {
     return {};
   }
 
-  return { title: post.title };
+  return { title: post.title, description: post.description };
 }
 
-export default function Blog({ params }: { params: { slug: string } }) {
+export default async function Blog({ params }: { params: { slug: string } }) {
   const post = getPostFromParam(params.slug);
 
   if (!post) {
-    console.log('if');
     notFound();
   }
 

@@ -5,7 +5,7 @@ export const metadata = {
   title: 'Blog',
 };
 
-const BlogPage = () => {
+export default async function BlogPage() {
   return (
     <section>
       <h1 className='mb-5 font-serif text-3xl font-bold'>Blog</h1>
@@ -29,6 +29,4 @@ const BlogPage = () => {
         ))}
     </section>
   );
-};
-
-export default BlogPage;
+}
