@@ -1,4 +1,4 @@
-import { allExamples } from 'contentlayer/generated';
+import { allDocuments } from 'contentlayer/generated';
 import Link from 'next/link';
 
 export const metadata = {
@@ -9,7 +9,7 @@ export default async function BlogPage() {
   return (
     <section>
       <h1 className='mb-5 font-serif text-3xl font-bold'>Blog</h1>
-      {allExamples
+      {allDocuments
         .sort((a, b) => {
           if (new Date(a.date) > new Date(b.date)) {
             return -1;
@@ -18,8 +18,8 @@ export default async function BlogPage() {
         })
         .map((post) => (
           <Link
-            key={post.slugAsParams}
-            href={`/blog/${post.slugAsParams}`}
+            key={post.slugAsPath}
+            href={`/blog${post.slugAsPath}`}
             className='mb-4 flex flex-col space-y-1'
           >
             <div className='flex w-full flex-col'>
