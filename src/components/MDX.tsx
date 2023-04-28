@@ -20,11 +20,11 @@ const components = {
   ),
 } satisfies C;
 
-type MDxProps = {
+type MDXProps = {
   code: string;
 };
 
-const MDx = ({ code }: MDxProps) => {
+const MDX = ({ code }: MDXProps) => {
   const Component = useMDXComponent(code);
   return (
     <article>
@@ -33,4 +33,4 @@ const MDx = ({ code }: MDxProps) => {
   );
 };
 
-export default MDx;
+export default MDX;

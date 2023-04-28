@@ -1,8 +1,8 @@
 import { Inter } from 'next/font/google';
-import ProviderWrapper from '~/components/ProviderWrapper';
-import SiteHeader from '~/components/SiteHeader';
-import TailwindIndicator from '~/components/TailwindIndicator';
+import ProviderWrapper from '~/components/provider-wrapper';
 import SiteFooter from '~/components/site-footer';
+import SiteHeader from '~/components/site-header';
+import TailwindIndicator from '~/components/tailwind-indicator';
 import { cn } from '~/utils/cn';
 import './globals.css';
 
@@ -11,7 +11,7 @@ export const metadata = {
     default: 'Piverlc',
     template: '%s | Piverlc',
   },
-  description: 'Blog by piverlc',
+  description: 'Blog by Piverlc',
   icons: {
     icon: '/favicon.ico',
   },

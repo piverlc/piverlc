@@ -1,5 +1,5 @@
 import { siteConfig } from '~/config/site';
-import { Icons } from '~/utils/Icons';
+import { Icons } from '~/utils/icons';
 import Container from './container';
 
 const SiteFooter = () => {
@@ -7,7 +7,7 @@ const SiteFooter = () => {
     <footer className='fixed bottom-0 my-6 w-full text-gray-500'>
       <Container>
         <div className='flex items-center space-x-1'>
-          <p>&copy; 2023 piverlc</p>
+          <p>&copy; 2023 Piverlc</p>
         </div>
         <a
           target='_blank'
