@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { navItems, siteConfig } from '~/config/site';
 import { cn } from '~/utils/cn';
-import { Icons } from '~/utils/icons';
 import Container from './container';
+import { Icons } from './icons';
 
 export default function SiteHeader() {
   let pathname = usePathname() || '/';

@@ -1,6 +1,6 @@
 import { siteConfig } from '~/config/site';
-import { Icons } from '~/utils/icons';
 import Container from './container';
+import { Icons } from './icons';
 
 export default function SiteFooter() {
   return (
