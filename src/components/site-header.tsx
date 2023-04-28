@@ -8,7 +8,7 @@ import { cn } from '~/utils/cn';
 import { Icons } from '~/utils/icons';
 import Container from './container';
 
-const SiteHeader = () => {
+export default function SiteHeader() {
   let pathname = usePathname() || '/';
 
   if (pathname.includes('/blog/')) {
@@ -18,13 +18,11 @@ const SiteHeader = () => {
   return (
     <header className='sticky top-0 z-40 w-full py-4'>
       <Container>
-        <LayoutGroup>
-          <Link href='/' className='items-center space-x-2' title='logo'>
-            <span className='text-5xl text-light transition-all hover:text-gray-300'>
-              {'P'}
-            </span>
-          </Link>
-        </LayoutGroup>
+        <Link href='/' className='items-center space-x-2' title='logo'>
+          <span className='text-5xl text-light transition-all hover:text-gray-300'>
+            {'P'}
+          </span>
+        </Link>
 
         <LayoutGroup>
           <nav className='hidden sm:flex' id='nav'>
@@ -63,21 +61,18 @@ const SiteHeader = () => {
           </nav>
         </LayoutGroup>
 
-        <LayoutGroup>
-          <nav>
-            <a
-              target='_blank'
-              rel='noreferrer'
-              title={`${siteConfig.links.github.title}`}
-              href={`${siteConfig.links.github.href}`}
-            >
-              <Icons.github className='h-6 w-6 transition-all duration-100 hover:text-gray-300' />
-              <span className='sr-only'>{`${siteConfig.links.github.title}`}</span>
-            </a>
-          </nav>
-        </LayoutGroup>
+        <nav>
+          <a
+            target='_blank'
+            rel='noreferrer'
+            title={`${siteConfig.links.github.title}`}
+            href={`${siteConfig.links.github.href}`}
+          >
+            <Icons.github className='h-6 w-6 transition-all duration-100 hover:text-gray-300' />
+            <span className='sr-only'>{`${siteConfig.links.github.title}`}</span>
+          </a>
+        </nav>
       </Container>
     </header>
   );
-};
-export default SiteHeader;
+}

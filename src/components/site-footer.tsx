@@ -2,7 +2,7 @@ import { siteConfig } from '~/config/site';
 import { Icons } from '~/utils/icons';
 import Container from './container';
 
-const SiteFooter = () => {
+export default function SiteFooter() {
   return (
     <footer className='fixed bottom-0 my-6 w-full text-gray-500'>
       <Container>
@@ -22,6 +22,4 @@ const SiteFooter = () => {
       </Container>
     </footer>
   );
-};
-
-export default SiteFooter;
+}
