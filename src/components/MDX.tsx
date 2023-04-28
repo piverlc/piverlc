@@ -24,13 +24,11 @@ type MDXProps = {
   code: string;
 };
 
-const MDX = ({ code }: MDXProps) => {
+export default function MDX({ code }: MDXProps) {
   const Component = useMDXComponent(code);
   return (
     <article>
       <Component components={{ ...components }} />
     </article>
   );
-};
-
-export default MDX;
+}
