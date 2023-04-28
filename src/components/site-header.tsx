@@ -4,8 +4,8 @@ import { LayoutGroup, motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { navItems, siteConfig } from '~/config/site';
-import { Icons } from '~/utils/Icons';
 import { cn } from '~/utils/cn';
+import { Icons } from '~/utils/icons';
 import Container from './container';
 
 const SiteHeader = () => {

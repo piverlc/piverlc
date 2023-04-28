@@ -1,8 +1,8 @@
 import { allExamples } from 'contentlayer/generated';
 import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import MDx from '~/components/MDX';
-import { getPostFromParam } from '~/utils/getPostFromParam';
+import MDX from '~/components/mdx';
+import { getPostFromParam } from '~/utils/get-post';
 
 export const dynamicParams = false;
 
@@ -36,7 +36,7 @@ export default async function Blog({ params }: { params: { slug: string } }) {
   return (
     <section>
       <h1 className='max-w-[650px] font-serif text-3xl font-bold'>{post.title}</h1>
-      <MDx key={post.slugAsParams} code={post.body.code} />
+      <MDX key={post.slugAsParams} code={post.body.code} />
     </section>
   );
 }

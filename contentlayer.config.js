@@ -31,7 +31,7 @@ export const Example = defineDocumentType(() => ({
     },
     author: {
       type: 'string',
-      default: '@piverlc',
+      default: '@Piverlc',
     },
   },
 }));
