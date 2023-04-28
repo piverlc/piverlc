@@ -1,7 +1,7 @@
 import { allExamples } from 'contentlayer/generated';
 import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import MDX from '~/components/mdx';
+import MDX from '~/components/MDX';
 import { getPostFromParam } from '~/utils/get-post';
 
 export const dynamicParams = false;
