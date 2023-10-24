@@ -2,7 +2,7 @@ import { allDocuments } from 'contentlayer/generated';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import MDX from '~/components/mdx-components';
-import type { PageProps } from '~/types';
+import type { PageProps } from '~/types/types';
 
 export const dynamicParams = false;
 
