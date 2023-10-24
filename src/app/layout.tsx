@@ -29,7 +29,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang='en' className={cn('bg-midnight text-white', inter.variable)}>
+    <html lang='en' className={cn('bg-mid-night text-white', inter.variable)}>
       <body className='max-w-full antialiased'>
         <ProviderWrapper>
           <SiteHeader />
