@@ -1,6 +1,6 @@
+import Image from 'next/image';
 import { siteConfig } from '~/config/site';
 import Container from './container';
-import { Icons } from './icons';
 
 export default function SiteFooter() {
   return (
@@ -13,11 +13,17 @@ export default function SiteFooter() {
           target='_blank'
           rel='noreferrer'
           className='mx-2'
-          title={`${siteConfig.links.twitter.title}`}
-          href={`${siteConfig.links.twitter.href}`}
+          title={`${siteConfig.links.x.title}`}
+          href={`${siteConfig.links.x.href}`}
         >
-          <Icons.twitter className='h-6 w-6 transition-colors duration-100 hover:text-light' />
-          <span className='sr-only'>{`${siteConfig.links.twitter.title}`}</span>
+          <Image
+            priority
+            width={18}
+            height={18}
+            src={'/x-twitter.svg'}
+            alt={`${siteConfig.links.x.title}`}
+          />
+          <span className='sr-only'>{`${siteConfig.links.x.title}`}</span>
         </a>
       </Container>
     </footer>
