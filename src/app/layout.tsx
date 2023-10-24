@@ -1,6 +1,5 @@
 import { Inter } from 'next/font/google';
 import ProviderWrapper from '~/components/provider-wrapper';
-import SiteFooter from '~/components/site-footer';
 import SiteHeader from '~/components/site-header';
 import TailwindIndicator from '~/components/tailwind-indicator';
 import { cn } from '~/utils/cn';
@@ -29,14 +28,21 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang='en' className={cn('bg-midnight text-white', inter.variable)}>
-      <body className='max-w-full antialiased'>
-        <ProviderWrapper>
-          <SiteHeader />
-          <main className='container m-auto'>{children}</main>
-          <TailwindIndicator />
-          <SiteFooter />
-        </ProviderWrapper>
+    <html
+      lang='en'
+      className={cn(
+        'bg-white text-black dark:bg-mid-night-dark dark:text-white',
+        inter.variable
+      )}
+    >
+      <body className='mx-4 mb-40 mt-8 flex max-w-2xl flex-col antialiased md:flex-row lg:mx-auto'>
+        <main className='flex min-w-0 flex-auto flex-col px-2 md:px-0'>
+          <ProviderWrapper>
+            <SiteHeader />
+            {children}
+            <TailwindIndicator />
+          </ProviderWrapper>
+        </main>
       </body>
     </html>
   );

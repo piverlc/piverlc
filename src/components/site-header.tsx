@@ -3,9 +3,9 @@
 import { LayoutGroup, motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { navItems, siteConfig } from '~/config/site';
+import { siteConfig } from '~/config/site';
+import type { Path } from '~/types/types';
 import { cn } from '~/utils/cn';
-import Container from './container';
 import { Icons } from './icons';
 
 export default function SiteHeader() {
@@ -16,63 +16,63 @@ export default function SiteHeader() {
   }
 
   return (
-    <header className='sticky top-0 z-40 w-full py-4'>
-      <Container>
-        <Link href='/' className='items-center space-x-2' title='logo'>
-          <span className='text-5xl text-light transition-all hover:text-gray-300'>
-            {'P'}
-          </span>
-        </Link>
-
+    <header className='mb-16 tracking-tight'>
+      <div className='lg:sticky lg:top-20'>
         <LayoutGroup>
-          <nav className='hidden sm:flex' id='nav'>
-            {Object.entries(navItems).map(([path, { name }]) => {
-              const isActive = path === pathname;
-              return (
-                <Link
-                  key={path}
-                  href={path}
-                  className={cn(
-                    'flex align-middle font-medium transition-all hover:text-gray-300',
-                    {
-                      'text-neutral-500': !isActive,
-                      'font-semibold': isActive,
-                    }
-                  )}
-                  title={name}
-                >
-                  <span className='relative px-[10px] py-[5px]'>
-                    {name}
-                    {path === pathname ? (
-                      <motion.div
-                        className='absolute inset-0 z-[-1] rounded-md bg-neutral-800'
-                        layoutId='sidebar'
-                        transition={{
-                          type: 'spring',
-                          stiffness: 350,
-                          damping: 30,
-                        }}
-                      />
-                    ) : null}
-                  </span>
-                </Link>
-              );
-            })}
+          <nav
+            className='relative flex scroll-pr-6 flex-row items-start px-0 pb-0 md:relative md:overflow-auto'
+            id='nav'
+          >
+            <div className='flex flex-row space-x-0 pr-10'>
+              {Object.entries(siteConfig.links).map(
+                ([path, { isExternal, title, href }]) => {
+                  const isActive = path === pathname;
+                  const externalHref = siteConfig.links[path as Path].href;
+                  const externalTitle = siteConfig.links[path as Path].title;
+                  return (
+                    <Link
+                      key={path}
+                      target={isExternal ? '_blank' : '_self'}
+                      href={isExternal ? externalHref : href}
+                      title={isExternal ? externalTitle : title}
+                      rel={isExternal ? 'noopener noreferrer' : undefined}
+                      className={cn(
+                        'flex align-middle text-link-primary transition-all hover:text-link-secondary',
+                        {
+                          'text-neutral-500': !isActive,
+                          'font-semibold': isActive,
+                        }
+                      )}
+                    >
+                      {isExternal ? (
+                        <div className='mx-2 flex items-center'>
+                          <Icons.arrow />
+                          <span className='px-2 py-1'>{externalTitle}</span>
+                        </div>
+                      ) : (
+                        <span className='relative mr-2 py-1 pr-2'>
+                          {title}
+                          {isActive ? (
+                            <motion.div
+                              className='absolute inset-0 top-7 z-[-1] mx-2 h-[1px] bg-neutral-200 from-transparent to-neutral-900 dark:bg-neutral-800 dark:bg-gradient-to-r'
+                              layoutId='navbar'
+                              transition={{
+                                type: 'spring',
+                                stiffness: 350,
+                                damping: 30,
+                              }}
+                            />
+                          ) : null}
+                        </span>
+                      )}
+                    </Link>
+                  );
+                }
+              )}
+            </div>
           </nav>
         </LayoutGroup>
-
-        <nav>
-          <a
-            target='_blank'
-            rel='noreferrer'
-            title={`${siteConfig.links.github.title}`}
-            href={`${siteConfig.links.github.href}`}
-          >
-            <Icons.github className='h-6 w-6 transition-all duration-100 hover:text-gray-300' />
-            <span className='sr-only'>{`${siteConfig.links.github.title}`}</span>
-          </a>
-        </nav>
-      </Container>
+      </div>
     </header>
   );
 }
