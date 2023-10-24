@@ -8,7 +8,7 @@ export type BlogListCardProps = {
 
 const BlogListCard = ({ post }: BlogListCardProps) => {
   return (
-    <article className='my-5 flex h-full w-full flex-1 flex-col justify-between rounded-2xl border border-[#e5e7eb] p-5 leading-relaxed sm:p-5'>
+    <article className='my-5 flex h-fit w-full flex-1 flex-col justify-between rounded-2xl border border-[#e5e7eb] p-5 leading-relaxed sm:p-5'>
       <h2 className='mb-1 h-fit w-fit text-2xl font-bold'>
         <Link
           href={`/blog${post.slugAsPath}`}
