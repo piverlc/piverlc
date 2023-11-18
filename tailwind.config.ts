@@ -1,10 +1,12 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ['./src/**/*.{js,ts,jsx,tsx}'],
+import type { Config } from 'tailwindcss';
+
+export default {
+  content: ['./src/**/*.{js,ts,jsx,tsx}', './content/**/*.mdx'],
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-sans)'],
+        sans: ['var(--font-geist-sans)'],
+        mono: ['var(--font-geist-mono)'],
       },
       colors: {
         light: '#FAFAFA',
@@ -17,4 +19,4 @@ module.exports = {
     },
   },
   plugins: [require('tailwindcss-animate')],
-};
+} satisfies Config;
