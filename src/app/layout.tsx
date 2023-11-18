@@ -1,4 +1,5 @@
-import { Inter } from 'next/font/google';
+import { GeistMono } from 'geist/font/mono';
+import { GeistSans } from 'geist/font/sans';
 import ProviderWrapper from '~/components/provider-wrapper';
 import SiteHeader from '~/components/site-header';
 import TailwindIndicator from '~/components/tailwind-indicator';
@@ -16,12 +17,6 @@ export const metadata = {
   },
 };
 
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-sans',
-  display: 'swap',
-});
-
 interface RootLayoutProps {
   children: React.ReactNode;
 }
@@ -32,7 +27,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
       lang='en'
       className={cn(
         'bg-white text-black dark:bg-mid-night-dark dark:text-white',
-        inter.variable
+        GeistSans.variable,
+        GeistMono.variable
       )}
     >
       <body className='mx-4 mb-40 mt-8 flex max-w-2xl flex-col antialiased md:flex-row lg:mx-auto'>

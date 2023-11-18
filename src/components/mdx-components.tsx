@@ -27,7 +27,7 @@ type MDXProps = {
 export default function MDX({ code }: MDXProps) {
   const Component = useMDXComponent(code);
   return (
-    <article>
+    <article className='prose prose-neutral dark:prose-invert'>
       <Component components={{ ...components }} />
     </article>
   );
