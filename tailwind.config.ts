@@ -1,4 +1,6 @@
+import tailwindcssTypography from '@tailwindcss/typography';
 import type { Config } from 'tailwindcss';
+import tailwindcssAnimate from 'tailwindcss-animate';
 
 export default {
   content: ['./src/**/*.{js,ts,jsx,tsx}', './content/**/*.mdx'],
@@ -18,5 +20,5 @@ export default {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [tailwindcssAnimate, tailwindcssTypography],
 } satisfies Config;
