@@ -1,26 +1,29 @@
-import { type DocumentTypes } from 'contentlayer/generated';
 import Link from 'next/link';
+import Balancer from 'react-wrap-balancer';
+import type { BlogPost } from '~/types/types';
 import { formatDate } from '~/utils/formatDate';
 
 export type BlogListCardProps = {
-  post: DocumentTypes;
+  blogPost: BlogPost;
 };
 
-const BlogListCard = ({ post }: BlogListCardProps) => {
+const BlogListCard = ({ blogPost }: BlogListCardProps) => {
   return (
     <article className='my-5 flex h-fit w-full flex-1 flex-col justify-between rounded-2xl border border-[#e5e7eb] p-5 leading-relaxed sm:p-5'>
       <h2 className='mb-1 h-fit w-fit text-2xl font-bold'>
         <Link
-          href={`/blog${post.slugAsPath}`}
+          href={`/blog/${blogPost.slug}`}
           className='flex items-center hover:text-link-secondary'
         >
-          {post.title}
+          {blogPost.metadata.title}
         </Link>
       </h2>
-      <p className='my-2 text-lg text-[#B4B4B4]'>{formatDate(post.date)}</p>
-      <p className='my-2 whitespace-pre-wrap text-base'>{post.description}</p>
+      <p className='my-2 text-lg text-[#B4B4B4]'>{formatDate(blogPost.metadata.date)}</p>
+      <p className='my-2 whitespace-pre-wrap text-base'>
+        {blogPost.metadata.description}
+      </p>
       <p className='my-2 h-fit w-fit text-base text-link-primary hover:text-link-secondary'>
-        <Link href={`/blog${post.slugAsPath}`}>Read More</Link>
+        <Link href={`/blog/${blogPost.slug}`}>Read More</Link>
       </p>
     </article>
   );

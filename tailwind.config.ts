@@ -18,6 +18,14 @@ export default {
         'link-primary': '#58D5BA',
         'link-secondary': '#86EAD4',
       },
+      typography: {
+        quoteless: {
+          css: {
+            'blockquote p:first-of-type::before': { content: 'none' },
+            'blockquote p:first-of-type::after': { content: 'none' },
+          },
+        },
+      },
     },
   },
   plugins: [tailwindcssAnimate, tailwindcssTypography],

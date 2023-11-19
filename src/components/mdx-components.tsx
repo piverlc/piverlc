@@ -1,34 +1,65 @@
-import { useMDXComponent } from 'next-contentlayer/hooks';
-import { cn } from '~/utils/cn';
+import { MDXRemote } from 'next-mdx-remote/rsc';
+import Image from 'next/image';
+import Link from 'next/link';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeSlug from 'rehype-slug';
+import remarkGfm from 'remark-gfm';
+import { highlight } from 'sugar-high';
 
-type C = {
-  [Key: string]: ({
-    className,
-    ...props
-  }: {
-    className?: string | undefined;
-  }) => JSX.Element;
-};
+function CustomLink(props: any) {
+  const href = props.href;
 
-// TODO: add html & styles
+  if (href.startsWith('/')) {
+    return (
+      <Link href={href} {...props}>
+        {props.children}
+      </Link>
+    );
+  }
+
+  if (href.startsWith('#')) {
+    return <a {...props} />;
+  }
+
+  return <a target='_blank' rel='noopener noreferrer' {...props} />;
+}
+
+function RoundedImage(props: any) {
+  return <Image alt={props.alt} className='rounded-lg' {...props} />;
+}
+
+function Code({ children, ...props }: any) {
+  const codeHTML = highlight(children);
+  return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
+}
+
 const components = {
-  h1: ({ className, ...props }) => (
-    <h1
-      className={cn('mt-2 scroll-m-20 text-4xl font-bold tracking-tight', className)}
-      {...props}
-    />
-  ),
-} satisfies C;
-
-type MDXProps = {
-  code: string;
+  code: Code,
+  a: CustomLink,
+  Image: RoundedImage,
 };
 
-export default function MDX({ code }: MDXProps) {
-  const Component = useMDXComponent(code);
+export default function CustomMDX(props: any) {
   return (
-    <article className='prose prose-neutral dark:prose-invert'>
-      <Component components={{ ...components }} />
-    </article>
+    <MDXRemote
+      {...props}
+      components={{ ...components, ...(props.components || {}) }}
+      options={{
+        mdxOptions: {
+          remarkPlugins: [remarkGfm],
+          rehypePlugins: [
+            rehypeSlug,
+            [
+              rehypeAutolinkHeadings,
+              {
+                properties: {
+                  className: ['anchor'],
+                },
+              },
+            ],
+          ],
+        },
+      }}
+    />
   );
 }
