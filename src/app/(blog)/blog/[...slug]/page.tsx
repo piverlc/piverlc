@@ -1,51 +1,56 @@
-import { allDocuments } from 'contentlayer/generated';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import MDX from '~/components/mdx-components';
+import Balancer from 'react-wrap-balancer';
+import CustomMDX from '~/components/mdx-components';
 import type { PageProps } from '~/types/types';
+import { getBlogPosts } from '~/utils/blog';
 
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  return allDocuments.map((doc) => ({
-    slug: doc.slugAsPath.replace('/', '').split('/'),
+  return (await getBlogPosts()).map((blogPost) => ({
+    slug: [blogPost.slug],
   }));
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata | undefined> {
-  const doc = await getAllDocsFromParams(params);
+  const blogPost = await getAllBlogPostsFromParams(params);
 
-  if (!doc) {
+  if (!blogPost) {
     return {};
   }
 
-  return { title: doc.title, description: doc.description };
+  return { title: blogPost.metadata.title, description: blogPost.metadata.description };
 }
 
 export default async function Blog({ params }: PageProps) {
-  const doc = await getAllDocsFromParams(params);
+  const blogPost = await getAllBlogPostsFromParams(params);
 
-  if (!doc) {
+  if (!blogPost) {
     notFound();
   }
 
   return (
     <section>
-      <h1 className='max-w-[650px] font-serif text-3xl font-bold'>{doc.title}</h1>
-      <MDX key={doc.slugAsSegments} code={doc.body.code} />
+      <h1 className='max-w-[650px] text-3xl font-bold tracking-tighter'>
+        <Balancer>{blogPost.metadata.title}</Balancer>
+      </h1>
+      <article className='prose prose-neutral prose-quoteless dark:prose-invert'>
+        <CustomMDX source={blogPost.content} />
+      </article>
     </section>
   );
 }
 
-async function getAllDocsFromParams(params: PageProps['params']) {
+async function getAllBlogPostsFromParams(params: PageProps['params']) {
   const slug = params.slug.join('/');
-  const doc = allDocuments.find((doc) => doc.slugAsPath === `/${slug}`);
+  const blogPost = (await getBlogPosts()).find((blogPost) => blogPost.slug === `${slug}`);
 
-  if (!doc) {
+  if (!blogPost) {
     return null;
   }
 
-  return doc;
+  return blogPost;
 }

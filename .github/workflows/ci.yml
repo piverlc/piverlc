@@ -38,8 +38,6 @@ jobs:
             ${{ runner.os }}-pnpm-store-
       - name: Install dependencies
         run: pnpm install
-      - name: Generate Contentlayer
-        run: 'pnpm run cl:build'
       - name: Lint
         run: pnpm run lint
       - name: Typecheck

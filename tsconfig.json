@@ -21,10 +21,10 @@
         "name": "next"
       }
     ],
+    "strictNullChecks": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./src/*"],
-      "contentlayer/generated": ["./.contentlayer/generated"]
+      "~/*": ["./src/*"]
     }
   },
   "include": [
@@ -36,8 +36,7 @@
     "**/*.tsx",
     "**/*.cjs",
     "**/*.mjs",
-    ".next/types/**/*.ts",
-    ".contentlayer/generated"
+    ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }
