@@ -9,5 +9,4 @@ dist
 node_modules
 .next
 build
-.contentlayer
-tailwind.config.js
+tailwind.config.ts

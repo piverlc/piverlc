@@ -1,4 +1,14 @@
-import { siteConfig } from '~/config/site';
+export type BlogPostMetadata = {
+  title: string;
+  date: string;
+  description: string;
+} & { [x: string]: any };
+
+export type BlogPost = {
+  metadata: BlogPostMetadata;
+  content: string;
+  slug: string;
+};
 
 export interface PageProps {
   params: {
