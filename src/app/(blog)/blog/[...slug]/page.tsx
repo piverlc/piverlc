@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import Balancer from 'react-wrap-balancer';
 import CustomMDX from '~/components/mdx-components';
 import type { PageProps } from '~/types/types';
 import { getBlogPosts } from '~/utils/blog';
@@ -34,8 +33,8 @@ export default async function Blog({ params }: PageProps) {
 
   return (
     <section>
-      <h1 className='max-w-[650px] text-3xl font-bold tracking-tighter'>
-        <Balancer>{blogPost.metadata.title}</Balancer>
+      <h1 className='title max-w-[650px] text-2xl font-semibold tracking-tighter'>
+        {blogPost.metadata.title}
       </h1>
       <article className='prose prose-neutral prose-quoteless dark:prose-invert'>
         <CustomMDX source={blogPost.content} />
