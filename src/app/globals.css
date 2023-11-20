@@ -71,7 +71,7 @@ html {
 }
 
 .prose code span {
-  @apply text-white;
+  @apply font-medium;
 }
 .prose img {
   /* Don't apply styles to next/image */
@@ -81,7 +81,7 @@ html {
 .prose h2,
 h3,
 h4 {
-  @apply font-medium tracking-tight !important;
+  @apply font-medium tracking-tighter !important;
 }
 
 .prose strong {
@@ -116,4 +116,8 @@ table {
   max-width: fit-content;
   overflow-x: auto;
   white-space: nowrap;
+}
+
+.title {
+  text-wrap: balance;
 }

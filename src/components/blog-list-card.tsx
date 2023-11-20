@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Balancer from 'react-wrap-balancer';
 import type { BlogPost } from '~/types/types';
 import { formatDate } from '~/utils/formatDate';
 
