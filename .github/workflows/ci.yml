@@ -1,4 +1,4 @@
-name: Linting and Typechecking
+name: Linting, Typechecking, and Formatting
 on:
   push:
     branches:
@@ -9,26 +9,28 @@ concurrency:
   cancel-in-progress: false
 jobs:
   lint-and-typecheck:
-    runs-on:
-      - ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
       - name: Setup Node.js environment
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
+
       - name: Install pnpm
         uses: pnpm/action-setup@v2.2.4
         id: pnpm-install
         with:
           version: 8
           run_install: false
+
       - name: Get pnpm store directory
         id: pnpm-cache
         shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+        run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
       - uses: actions/cache@v3
         name: Setup pnpm cache
         with:
@@ -36,9 +38,18 @@ jobs:
           key: "${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}"
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
+
       - name: Install dependencies
         run: pnpm install
+
       - name: Lint
         run: pnpm run lint
+
       - name: Typecheck
         run: pnpm run typecheck
+
+      - name: Format with Prettier
+        run: pnpm run format:write
+
+      - name: Check if files are formatted
+        run: pnpm run format:check
