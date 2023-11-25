@@ -35,7 +35,6 @@ function Code({ children, ...props }: any) {
 function createHeading(level: number) {
   return ({ children }: { children: string }) => {
     const slug = slugify(children);
-    console.log({ slug });
     const slugElement = createElement(
       `h${level}`,
       { id: slug },
