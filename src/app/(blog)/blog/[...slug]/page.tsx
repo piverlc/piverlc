@@ -12,9 +12,8 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata | undefined> {
+export async function generateMetadata(props: PageProps): Promise<Metadata | undefined> {
+  const params = await props.params;
   const blogPost = await getAllBlogPostsFromParams(params);
 
   if (!blogPost) {
@@ -24,7 +23,8 @@ export async function generateMetadata({
   return { title: blogPost.metadata.title, description: blogPost.metadata.description };
 }
 
-export default async function Blog({ params }: PageProps) {
+export default async function Blog(props: PageProps) {
+  const params = await props.params;
   const blogPost = await getAllBlogPostsFromParams(params);
 
   if (!blogPost) {
@@ -43,7 +43,7 @@ export default async function Blog({ params }: PageProps) {
   );
 }
 
-async function getAllBlogPostsFromParams(params: PageProps['params']) {
+async function getAllBlogPostsFromParams(params: { slug: string[] }) {
   const slug = params.slug.join('/');
   const blogPost = (await getBlogPosts()).find((blogPost) => blogPost.slug === `${slug}`);
 

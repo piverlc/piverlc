@@ -8,8 +8,8 @@ export type BlogListCardProps = {
 
 const BlogListCard = ({ blogPost }: BlogListCardProps) => {
   return (
-    <article className='my-5 flex h-fit w-full flex-1 flex-col justify-between rounded-2xl border border-[#e5e7eb] p-5 leading-relaxed sm:p-5'>
-      <h2 className='mb-1 h-fit w-fit text-2xl font-bold'>
+    <article className='my-5 flex h-fit w-full flex-1 flex-col justify-between rounded-2xl border p-5 leading-relaxed sm:p-5'>
+      <h2 className='mb-1 size-fit text-2xl font-bold'>
         <Link
           href={`/blog/${blogPost.slug}`}
           className='flex items-center hover:text-link-secondary'
@@ -21,7 +21,7 @@ const BlogListCard = ({ blogPost }: BlogListCardProps) => {
       <p className='my-2 whitespace-pre-wrap text-base'>
         {blogPost.metadata.description}
       </p>
-      <p className='my-2 h-fit w-fit text-base text-link-primary hover:text-link-secondary'>
+      <p className='my-2 size-fit text-base text-link-primary hover:text-link-secondary'>
         <Link href={`/blog/${blogPost.slug}`}>Read More</Link>
       </p>
     </article>
