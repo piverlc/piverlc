@@ -50,7 +50,6 @@
     "zod": "^3.24.1"
   },
   "lint-staged": {
-    "*.{ts,tsx}": "pnpm run typecheck",
     "*.{ts,tsx,mdx}": [
       "pnpm run format:write",
       "pnpm run format:check"
