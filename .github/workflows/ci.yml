@@ -1,27 +1,41 @@
 name: Linting, Typechecking, and Formatting
+
 on:
   push:
     branches:
       - main
       - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+permissions:
+  contents: read
+
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   lint-and-typecheck:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    timeout-minutes: 15
 
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v3
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
-          node-version: '18.x'
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          cache: 'pnpm'
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v2.2.4
-        id: pnpm-install
+        uses: pnpm/action-setup@v2
         with:
           version: 8
           run_install: false
@@ -29,18 +43,19 @@ jobs:
       - name: Get pnpm store directory
         id: pnpm-cache
         shell: bash
-        run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
 
-      - uses: actions/cache@v3
-        name: Setup pnpm cache
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
         with:
-          path: '${{ steps.pnpm-cache.outputs.STORE_PATH }}'
-          key: "${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}"
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Lint
         run: pnpm run lint
@@ -48,8 +63,5 @@ jobs:
       - name: Typecheck
         run: pnpm run typecheck
 
-      - name: Format with Prettier
-        run: pnpm run format:write
-
-      - name: Check if files are formatted
+      - name: Format check
         run: pnpm run format:check
