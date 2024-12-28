@@ -11,9 +11,9 @@ export type BlogPost = {
 };
 
 export interface PageProps {
-  params: {
+  params: Promise<{
     slug: string[];
-  };
+  }>;
 }
 
 export type Prettify<T> = {
