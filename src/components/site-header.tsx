@@ -54,7 +54,7 @@ export default function SiteHeader() {
                           {title}
                           {isActive ? (
                             <motion.div
-                              className='absolute inset-0 top-7 z-[-1] mx-2 h-[1px] bg-neutral-200 from-transparent to-neutral-900 dark:bg-neutral-800 dark:bg-gradient-to-r'
+                              className='absolute inset-0 top-7 z-[-1] mx-2 h-px bg-neutral-200 from-transparent to-neutral-900 dark:bg-neutral-800 dark:bg-gradient-to-r'
                               layoutId='navbar'
                               transition={{
                                 type: 'spring',

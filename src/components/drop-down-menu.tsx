@@ -68,7 +68,7 @@ export const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup;
  * @link https://www.radix-ui.com/docs/primitives/components/dropdown-menu#subtrigger
  */
 export const DropdownMenuSubTrigger = forwardRef<
-  React.ElementRef<typeof DropdownMenuPrimitive.SubTrigger>,
+  React.ComponentRef<typeof DropdownMenuPrimitive.SubTrigger>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubTrigger> & {
     inset?: boolean;
   }
@@ -83,7 +83,7 @@ export const DropdownMenuSubTrigger = forwardRef<
     {...props}
   >
     {children}
-    <Icons.chevronRight className='ml-auto h-4 w-4' />
+    <Icons.chevronRight className='ml-auto size-4' />
   </DropdownMenuPrimitive.SubTrigger>
 ));
 DropdownMenuSubTrigger.displayName = DropdownMenuPrimitive.SubTrigger.displayName;
@@ -96,13 +96,13 @@ DropdownMenuSubTrigger.displayName = DropdownMenuPrimitive.SubTrigger.displayNam
  * @link https://www.radix-ui.com/docs/primitives/components/dropdown-menu#subcontent
  */
 export const DropdownMenuSubContent = forwardRef<
-  React.ElementRef<typeof DropdownMenuPrimitive.SubContent>,
+  React.ComponentRef<typeof DropdownMenuPrimitive.SubContent>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubContent>
 >(({ className, ...props }, ref) => (
   <DropdownMenuPrimitive.SubContent
     className={cn(
       'animate-in slide-in-from-left-1',
-      'z-50 min-w-[8rem] overflow-hidden rounded-md border border-slate-100 bg-white p-1 text-slate-700 shadow-md dark:border-slate-800 dark:bg-slate-800 dark:text-slate-400',
+      'z-50 min-w-32 overflow-hidden rounded-md border border-slate-100 bg-white p-1 text-slate-700 shadow-md dark:border-slate-800 dark:bg-slate-800 dark:text-slate-400',
       className
     )}
     ref={ref}
@@ -119,14 +119,14 @@ DropdownMenuSubContent.displayName = DropdownMenuPrimitive.SubContent.displayNam
  * @link https://www.radix-ui.com/docs/primitives/components/dropdown-menu#content
  */
 export const DropdownMenuContent = forwardRef<
-  React.ElementRef<typeof DropdownMenuPrimitive.Content>,
+  React.ComponentRef<typeof DropdownMenuPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content>
 >(({ className, sideOffset = 4, ...props }, ref) => (
   <DropdownMenuPrimitive.Portal>
     <DropdownMenuPrimitive.Content
       className={cn(
         'animate-in data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
-        'z-50 m-3 min-w-[8rem] overflow-hidden rounded-md border border-slate-100 bg-white p-1 text-slate-700 shadow-md dark:border-slate-800 dark:bg-slate-800 dark:text-slate-400',
+        'z-50 m-3 min-w-32 overflow-hidden rounded-md border border-slate-100 bg-white p-1 text-slate-700 shadow-md dark:border-slate-800 dark:bg-slate-800 dark:text-slate-400',
         className
       )}
       sideOffset={sideOffset}
@@ -145,7 +145,7 @@ DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName;
  * @link https://www.radix-ui.com/docs/primitives/components/dropdown-menu#item
  */
 export const DropdownMenuItem = forwardRef<
-  React.ElementRef<typeof DropdownMenuPrimitive.Item>,
+  React.ComponentRef<typeof DropdownMenuPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Item> & {
     inset?: boolean;
   }
@@ -170,7 +170,7 @@ DropdownMenuItem.displayName = DropdownMenuPrimitive.Item.displayName;
  * @link https://www.radix-ui.com/docs/primitives/components/dropdown-menu#checkboxitem
  */
 export const DropdownMenuCheckboxItem = forwardRef<
-  React.ElementRef<typeof DropdownMenuPrimitive.CheckboxItem>,
+  React.ComponentRef<typeof DropdownMenuPrimitive.CheckboxItem>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.CheckboxItem>
 >(({ className, children, checked, ...props }, ref) => (
   <DropdownMenuPrimitive.CheckboxItem
@@ -182,9 +182,9 @@ export const DropdownMenuCheckboxItem = forwardRef<
     ref={ref}
     {...props}
   >
-    <span className='absolute left-2 flex h-3.5 w-3.5 items-center justify-center'>
+    <span className='absolute left-2 flex size-3.5 items-center justify-center'>
       <DropdownMenuPrimitive.ItemIndicator>
-        <Icons.check className='h-4 w-4' />
+        <Icons.check className='size-4' />
       </DropdownMenuPrimitive.ItemIndicator>
     </span>
     {children}
@@ -200,7 +200,7 @@ DropdownMenuCheckboxItem.displayName = DropdownMenuPrimitive.CheckboxItem.displa
  * @link https://www.radix-ui.com/docs/primitives/components/dropdown-menu#radioitem
  */
 export const DropdownMenuRadioItem = forwardRef<
-  React.ElementRef<typeof DropdownMenuPrimitive.RadioItem>,
+  React.ComponentRef<typeof DropdownMenuPrimitive.RadioItem>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.RadioItem>
 >(({ className, children, ...props }, ref) => (
   <DropdownMenuPrimitive.RadioItem
@@ -211,9 +211,9 @@ export const DropdownMenuRadioItem = forwardRef<
     ref={ref}
     {...props}
   >
-    <span className='absolute left-2 flex h-3.5 w-3.5 items-center justify-center'>
+    <span className='absolute left-2 flex size-3.5 items-center justify-center'>
       <DropdownMenuPrimitive.ItemIndicator>
-        <Icons.circle className='h-2 w-2 fill-current' />
+        <Icons.circle className='size-2 fill-current' />
       </DropdownMenuPrimitive.ItemIndicator>
     </span>
     {children}
@@ -229,7 +229,7 @@ DropdownMenuRadioItem.displayName = DropdownMenuPrimitive.RadioItem.displayName;
  * @link https://www.radix-ui.com/docs/primitives/components/dropdown-menu#label
  */
 export const DropdownMenuLabel = forwardRef<
-  React.ElementRef<typeof DropdownMenuPrimitive.Label>,
+  React.ComponentRef<typeof DropdownMenuPrimitive.Label>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Label> & {
     inset?: boolean;
   }
@@ -254,7 +254,7 @@ DropdownMenuLabel.displayName = DropdownMenuPrimitive.Label.displayName;
  * @link https://www.radix-ui.com/docs/primitives/components/dropdown-menu#separator
  */
 export const DropdownMenuSeparator = forwardRef<
-  React.ElementRef<typeof DropdownMenuPrimitive.Separator>,
+  React.ComponentRef<typeof DropdownMenuPrimitive.Separator>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Separator>
 >(({ className, ...props }, ref) => (
   <DropdownMenuPrimitive.Separator
